@@ -8,17 +8,16 @@ import java.util.*;
  */
 public class Node {
 	private int cost;					//the heaviest person that is in the boat
+	private State state;
 	private Node parent;
 	private List<Node> children;
-	private List<Integer> northBank;	
-	private List<Integer> southBank;
 
-	Node(int cost, Node parent){
+	Node(int cost, Node parent, State state){
 		this.parent = parent;
 		this.cost = cost;
 		this.children = new ArrayList<Node>();
-		this.northBank = new ArrayList<Integer>();
-		this.southBank = new ArrayList<Integer>();
+		this.state = state;
+		
 	}
 	public void addChild(Node child){
 		children.add(child);
@@ -39,5 +38,8 @@ public class Node {
 	}
 	public Node getParent(){
 		return parent;
+	}
+	public int hashCode(Node node){
+		return node.state.hashCode();
 	}
 }

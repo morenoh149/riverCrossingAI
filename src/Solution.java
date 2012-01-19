@@ -23,8 +23,8 @@ public class Solution {
 			System.out.println("A*  "+weights.get(0)+" 0");
 		}
 		else{
-			Node root = new Node(0, null);
-			BFS bfs = new BFS(root, weights);
+			//Node root = new Node(0, null);
+			//BFS bfs = new BFS(root, weights);
 		}
 	}
 }
