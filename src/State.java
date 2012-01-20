@@ -100,4 +100,10 @@ public class State {
 	public boolean getAtStart(){
 		return this.atStart;
 	}
+	public List<Integer> getNorthBank(){
+		return goal;
+	}
+	public List<Integer> getSouthBank(){
+		return start;
+	}
 }

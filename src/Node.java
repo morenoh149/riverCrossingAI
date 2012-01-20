@@ -27,6 +27,47 @@ public class Node {
 		children.add(child);
 	}
 	/**
+	 * expands the current node, for the southbank, create all combinations of ppl and
+	 * branch, for northbank branch on each person
+	 */
+	public List<Node> expand(){
+		if(state.getAtStart()){
+			List<List<Integer>> pairs =  new ArrayList<List<Integer>>();
+			List<Integer> copy = new ArrayList<Integer>(state.getSouthBank());
+			if(state.getSouthBank().size()==1){									//if one person on south side
+				for(Integer i: state.getSouthBank()){
+					List<Integer> tuple = new ArrayList<Integer>();
+					tuple.add(i);
+					Node child = new Node(i.intValue(), this, state, tuple);
+					children.add(child);
+				}
+			}
+			else{																//if >1 person on south side
+				for(Integer i: state.getSouthBank()){
+					for(Integer j: copy){
+						List<Integer> tuple = new ArrayList<Integer>();
+						tuple.add(i);
+						tuple.add(j);
+						pairs.add(tuple);
+					}
+				}
+				for(List<Integer> p: pairs){
+					Node child = new Node(Collections.max(p), this, state, p);
+					children.add(child);
+				}
+			}
+		}
+		else{																	//if on north side
+			for(Integer i: state.getNorthBank()){
+				List<Integer> tuple = new ArrayList<Integer>();
+				tuple.add(i);
+				Node child = new Node(i.intValue(), this, state, tuple);
+				children.add(child);
+			}
+		}
+		return children;
+	}
+	/**
 	 * returns null if no child with the given cost exists
 	 * @param cost
 	 * @return
