@@ -84,6 +84,9 @@ public class State {
 			if(atStart){
 				this.start.remove(i);
 				this.goal.add(i);
+			}else{
+				this.goal.remove(i);
+				this.start.add(i);
 			}
 		}
 		this.atStart = !this.atStart;
