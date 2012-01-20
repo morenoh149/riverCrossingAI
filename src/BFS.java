@@ -33,26 +33,23 @@ public class BFS {
 		if(currentNode.getState().equals(goalState)){
 			getAncestry(currentNode);
 		}
+		else{
+			frontier.addAll(currentNode.expand());
+			search(frontier);
+		}
 	}
 	/**
 	 * saves ancestry of the given node to result string
 	 * @param currentNode
 	 */
-	public void getAncestry(Node currentNode){
-		Node index = currentNode;
-		LinkedList<List<Integer>> reverseList = new LinkedList<List<Integer>>();
-		result = "";
-		while(index!=null){
-			reverseList.add(index.getMoved());
-			index = index.getParent();
+	public void getAncestry(Node givenNode){
+		Node iNode = givenNode;
+		State index = iNode.getState();
+		StringBuilder sb = new StringBuilder();
+		while(iNode!=null){
+			sb.insert(0,index.toString());
+			iNode = iNode.getParent();
 		}
-		while(!reverseList.isEmpty()){
-			List<Integer> l = reverseList.removeLast();
-			String temp = "";
-			for(Integer i : l){
-				temp.concat(i.toString()+" ");
-			}
-			result.concat(temp+"\n");
-		}
+		result = sb.toString();
 	}
 }
