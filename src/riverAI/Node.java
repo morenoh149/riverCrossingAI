@@ -12,6 +12,7 @@ public class Node implements Comparator{
 	private int time;
 	private State state;
 	private Node parent;
+	private int estimate;              //this servers as F(state) for the A* search
 	private List<Node> children;
 	private List<Integer> moved;
 
@@ -21,7 +22,6 @@ public class Node implements Comparator{
 		this.children = new ArrayList<Node>();
 		this.state = state;
 		this.moved = moved;
-		this.time = 0;
 		if(moved!=null){
 			this.state = this.state.update(moved);
 			int max = 0;
@@ -30,19 +30,21 @@ public class Node implements Comparator{
 					max = i;
 				}
 			}
-			time = max;
-			int t1 = 0, t2 = 0;
-			int count = 0;
-			for(int i: moved){
-				if(count==0){
-					t1=i;
-					count++;
-				}else{
-					t2 = i;
-				}
-			}
-			cost = Math.abs(t1-t2);
+			this.cost = cost + max;
 		}
+		int max = 0;
+		for(int i: this.state.getSouthBank()){
+			if(i> max){
+				max=i;
+			}
+		}
+		
+//******************************************************************************************************************************//
+		//A* notes
+		estimate = max + cost; //max is our h(n) cost is the g(n) and estimate is our f(n)
+		
+//******************************************************************************************************************************//
+		
 	}
 	public int getCost(){
 		return cost;
@@ -66,7 +68,7 @@ public class Node implements Comparator{
 					State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
 							new ArrayList<Integer>(state.getNorthBank()),
 							t);
-					Node child = new Node(i.intValue(), this, copyState, tuple);
+					Node child = new Node(this.getCost(), this, copyState, tuple);
 					children.add(child);
 				}
 			}
@@ -86,7 +88,7 @@ public class Node implements Comparator{
 					State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
 							new ArrayList<Integer>(state.getNorthBank()),
 							t);
-					Node child = new Node(Collections.max(p), this, copyState, p);
+					Node child = new Node(this.getCost(), this, copyState, p);
 					children.add(child);
 				}
 			}
@@ -100,7 +102,7 @@ public class Node implements Comparator{
 				State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
 						new ArrayList<Integer>(state.getNorthBank()),
 						t);
-				Node child = new Node(i.intValue(), this, copyState, tuple);
+				Node child = new Node(this.getCost(), this, copyState, tuple);
 				children.add(child);
 			}
 		}
