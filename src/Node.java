@@ -11,13 +11,17 @@ public class Node {
 	private State state;
 	private Node parent;
 	private List<Node> children;
+	private List<Integer> moved;
 
-	Node(int cost, Node parent, State state){
+	Node(int cost, Node parent, State state, List<Integer> moved){
 		this.parent = parent;
 		this.cost = cost;
 		this.children = new ArrayList<Node>();
 		this.state = state;
-		
+		this.moved = moved;
+		if(moved!=null){
+			this.state = this.state.update(moved);
+		}
 	}
 	public void addChild(Node child){
 		children.add(child);

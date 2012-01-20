@@ -1,10 +1,12 @@
+import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 
 
 public class State {
-	private List<Integer> start;	
-	private List<Integer> goal;
-	private boolean atStart;
+	private List<Integer> start;	//southbank
+	private List<Integer> goal;		//northbank
+	private boolean atStart;		//true if boat is on the southern bank
 	
 	public State(List<Integer> start, List<Integer> goal, boolean atStart){
 		this.start = start;
@@ -34,10 +36,7 @@ public class State {
 		return hash;
 	}
 	public boolean equals(State state){
-		boolean equals = false;
-		
-		return equals;
-		
+		Collections.
+		return equals;	
 	}
-
 }

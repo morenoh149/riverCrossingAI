@@ -1,0 +1,7 @@
+Authors:
+  harry moreno morenoh149@gmail.com
+  ben leone   bleone@wpi.edu
+
+cs4341-hw1:
+  use DFS, BFS and A* to determine the fastest way to get ppl across a river.
+BFS uses a queue, DFS uses a stack.
