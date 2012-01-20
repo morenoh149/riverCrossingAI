@@ -27,8 +27,8 @@ public class Solution {
 			ArrayList<Integer> dummy = new ArrayList<Integer>();
 			State init = new State(weights, dummy, true);
 			State goal = new State(dummy, weights, false);
-			//BFS bfs = new BFS(init, goal);
-			DFS.search(init, goal).toString();
+//			BFS bfs = new BFS(init, goal);
+			System.out.println(DFS.search(init, goal));
 		}
 	}
 }

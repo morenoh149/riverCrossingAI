@@ -81,11 +81,10 @@ public class State {
 	 */
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-//		sb.append(goal.toString()+"\n");
-//		sb.append(start.toString());
-//		sb.append("\n");
-//		sb.append(atStart + "\n");
-//		sb.append("------------------");
+		sb.append("north:"+start.toString()+"\n");
+		sb.append("south:"+goal.toString()+"\n");
+		sb.append(atStart + "\n");
+		sb.append("------------------");
 		return sb.toString();
 	}
 	/**

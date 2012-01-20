@@ -25,13 +25,15 @@ public class BFS {
 		boolean notSolved=true;
 		boolean solutionCTL = true;
 		StringBuilder sb = new StringBuilder();
-		int i=0;
-		while(notSolved && i<20){
+		int numOfNodesExpanded=1;
+		int totalCost=0;
+		while(notSolved){
 			if(frontier.isEmpty()){
 				notSolved=false;
 			}
 			else{
 				this.currentNode = frontier.poll();
+				numOfNodesExpanded++;
 //				System.out.println(currentNode.getState().toString());
 			}
 			if(currentNode.getState().equals(goalState)){
@@ -41,10 +43,11 @@ public class BFS {
 			else{
 				frontier.addAll(currentNode.expand());
 			}
-			i++;
 		}
 		while(solutionCTL){
-			sb.insert(0,currentNode.toString()+"\n hi");
+			sb.append(currentNode.toString()+"\n");
+//			System.out.println("instance cost:"+currentNode.getCost());
+			totalCost += currentNode.getCost();
 			if(currentNode.getParent()==null){
 				solutionCTL=false;
 				break;
@@ -53,6 +56,8 @@ public class BFS {
 				currentNode = currentNode.getParent();
 			}
 		}
+		sb.insert(0, numOfNodesExpanded+" \n");
+		sb.insert(0, "BFS "+totalCost+" ");
 		result = sb.toString();
 		System.out.println(result);
 	}

@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class Node {
 	private int cost;					//the heaviest person that is in the boat
+	private int time;
 	private State state;
 	private Node parent;
 	private List<Node> children;
@@ -20,9 +21,31 @@ public class Node {
 		this.children = new ArrayList<Node>();
 		this.state = state;
 		this.moved = moved;
+		this.time = 0;
 		if(moved!=null){
 			this.state = this.state.update(moved);
+			int max = 0;
+			for(Integer i: moved){
+				if(i>max){
+					max = i;
+				}
+			}
+			time = max;
+			int t1 = 0, t2 = 0;
+			int count = 0;
+			for(int i: moved){
+				if(count==0){
+					t1=i;
+					count++;
+				}else{
+					t2 = i;
+				}
+			}
+			cost = Math.abs(t1-t2);
 		}
+	}
+	public int getCost(){
+		return cost;
 	}
 	public void addChild(Node child){
 		children.add(child);

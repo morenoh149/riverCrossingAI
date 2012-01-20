@@ -20,7 +20,7 @@ public class DFS {
 	 * @param goal the goal state
 	 * @return a list of all the states made to reach the solution or null in no solution was found
 	 */
-	static public ArrayList<State> search(State start, State goal){
+	static public String search(State start, State goal){
 		ArrayList<State> solution = null; //will hold the states that lead to the solution later
 		boolean solutionCTL=true; //used to control a loop that builds the solution list
 		Stack<Node> frontier = new Stack<Node>(); // holds the frontier (nodes that have not yet been expanded
@@ -29,11 +29,14 @@ public class DFS {
 		frontier.push(tree); // loads the root node into the frontier, this is needed due to the way the no solution case is handled
 		List<Node> expanded; // this variable with hold the nodes that are expanded from the current node before they are loaded into the frontier
 		Node Active=null; //this with hold the current node being looked at by the tree. it is loaded from the frontier
+		int numOfNodesExpanded=1;
+		int totalCost=0;
 		while(notSolved){
 			if(frontier.isEmpty()){
 				notSolved = false;
 			}else{
 				Active = frontier.pop();
+				numOfNodesExpanded++;
 			}
 			if(Active.getState().equals(goal)){
 				notSolved=true;
@@ -45,8 +48,11 @@ public class DFS {
 				}
 			}
 		}
+		solution = new ArrayList<State>();
 		while(solutionCTL){
+			System.out.println(Active.getState().toString());
 			solution.add(Active.getState());
+			totalCost += Active.getCost();
 			if(Active.getParent()==null){
 				solutionCTL=false;
 				break;
@@ -54,6 +60,7 @@ public class DFS {
 				Active = Active.getParent();
 			}
 		}
-		return solution;
+		StringBuilder sb = new StringBuilder();
+		sb.append(b)
 	} 
 }
