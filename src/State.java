@@ -48,7 +48,7 @@ public class State {
 	/**
 	 * this function will test to see if the states are equal
 	 * @param state the state to compare to
-	 * @return boolean of equality
+	 * @return boolean of equality, Liberte, et Fraternity
 	 */
 	public boolean equals(State state){
 		List<Integer> goal1, goal2, start1, start2;
