@@ -8,11 +8,20 @@ public class State {
 	private List<Integer> goal;		//northbank
 	private boolean atStart;		//true if boat is on the southern bank
 	
+	/**
+	 * makes a new state
+	 * @param start a list of the meatbag weights on the start side
+	 * @param goal a list of the meatbag weights of the goal side
+	 * @param atStart if the boat is at the start side
+	 */
 	public State(List<Integer> start, List<Integer> goal, boolean atStart){
 		this.start = start;
 		this.goal = goal;
 		this.atStart = atStart;
 	}
+	/**
+	 * UNUSED
+	 */
 	public int hashCode(){
 		Integer hash = 0;
 		int goalSum = 0;
@@ -35,8 +44,57 @@ public class State {
 		hash = Integer.parseInt(prehash);
 		return hash;
 	}
+	
+	/**
+	 * this function will test to see if the states are equal
+	 * @param state the state to compare to
+	 * @return boolean of equality
+	 */
 	public boolean equals(State state){
-		Collections.
-		return equals;	
+		List<Integer> goal1, goal2, start1, start2;
+		goal1=this.goal;
+		goal2=state.goal;
+		start1=this.start;
+		start2=state.start;
+		if(this.atStart==state.atStart){
+			for(Integer i: goal1){
+				goal2.remove(1);
+				goal1.remove(i);
+			}
+			if(goal1.isEmpty()&&goal2.isEmpty()){
+				for(Integer k: start1){
+					start2.remove(k);
+					start1.remove(k);
+				}
+				if(start1.isEmpty()&&start2.isEmpty()){
+					return true;
+				}
+			}
+		}
+		return false;	
+	}
+	
+	/**
+	 * Updates the state by moving the indicated meatbags identified by weight
+	 * @param moved an array list of the meatbag wieghts to be moved
+	 * @return the update state with the meat bags and boat moved.
+	 */
+	public State update(List<Integer> moved){
+		for(Integer i: moved){
+			if(atStart){
+				this.start.remove(i);
+				this.goal.add(i);
+			}
+		}
+		this.atStart = !this.atStart;
+		return this;
+	}
+	
+	/**
+	 * returns the atStart variable indicating where the boat is
+	 * @return atStart| really, you needed to read this comment?
+	 */
+	public boolean getAtStart(){
+		return this.atStart;
 	}
 }
