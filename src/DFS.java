@@ -27,7 +27,11 @@ public class DFS {
 		boolean notSolved=true; // a variable that controls the main search loop
 		frontier.push(tree); // loads the root node into the frontier, this is needed due to the way the no solution case is handled
 		List<Node> expanded; // this variable with hold the nodes that are expanded from the current node before they are loaded into the frontier
+<<<<<<< HEAD
 		Node Active=null; //this with hold the current node being looked at by the tree. it is loaded from the frontier
+=======
+		Node Active = null;; //this with hold the current node being looked at by the tree. it is loaded from the frontier
+>>>>>>> branch 'master' of https://morenoh149@github.com/morenoh149/riverCrossingAI.git
 		while(notSolved){
 			if(frontier.isEmpty()){
 				notSolved = false;
