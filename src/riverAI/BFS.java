@@ -19,40 +19,41 @@ public class BFS {
 	 */
 	BFS(State initialState, State goalState){
 		this.goalState = goalState;
-		currentNode = new Node(0, null, initialState, null);
+		Node tree = new Node(0, null, initialState, null);
 		frontier = new LinkedList<Node>();
-		frontier.add(currentNode);
+		frontier.add(tree);
 		boolean notSolved=true;
-		while(notSolved){
+		boolean solutionCTL = true;
+		StringBuilder sb = new StringBuilder();
+		int i=0;
+		while(notSolved && i<20){
 			if(frontier.isEmpty()){
 				notSolved=false;
 			}
 			else{
 				this.currentNode = frontier.poll();
-				System.out.println(currentNode.getState().toString());
+//				System.out.println(currentNode.getState().toString());
 			}
 			if(currentNode.getState().equals(goalState)){
 				notSolved=true;
-				getAncestry(currentNode);
+				break;
 			}
 			else{
 				frontier.addAll(currentNode.expand());
 			}
+			i++;
 		}
-		System.out.println(result);
-	}
-	/**
-	 * saves ancestry of the given node to result string
-	 * @param currentNode
-	 */
-	public void getAncestry(Node givenNode){
-		Node iNode = givenNode;
-		State index = iNode.getState();
-		StringBuilder sb = new StringBuilder();
-		while(iNode!=null){
-			sb.insert(0,index.toString());
-			iNode = iNode.getParent();
+		while(solutionCTL){
+			sb.insert(0,currentNode.toString()+"\n hi");
+			if(currentNode.getParent()==null){
+				solutionCTL=false;
+				break;
+			}
+			else{
+				currentNode = currentNode.getParent();
+			}
 		}
 		result = sb.toString();
+		System.out.println(result);
 	}
 }

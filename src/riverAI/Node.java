@@ -39,12 +39,17 @@ public class Node {
 				for(Integer i: state.getSouthBank()){
 					List<Integer> tuple = new ArrayList<Integer>();
 					tuple.add(i);
-					Node child = new Node(i.intValue(), this, state, tuple);
+					Boolean t = state.getAtStart();
+					State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
+							new ArrayList<Integer>(state.getNorthBank()),
+							t);
+					Node child = new Node(i.intValue(), this, copyState, tuple);
 					children.add(child);
 				}
 			}
 			else{																//if >1 person on south side
 				for(Integer i: state.getSouthBank()){
+					copy.remove(i);
 					for(Integer j: copy){
 						List<Integer> tuple = new ArrayList<Integer>();
 						tuple.add(i);
@@ -53,7 +58,12 @@ public class Node {
 					}
 				}
 				for(List<Integer> p: pairs){
-					Node child = new Node(Collections.max(p), this, state, p);
+					//System.out.println(p.toString());
+					Boolean t = state.getAtStart();
+					State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
+							new ArrayList<Integer>(state.getNorthBank()),
+							t);
+					Node child = new Node(Collections.max(p), this, copyState, p);
 					children.add(child);
 				}
 			}
@@ -63,7 +73,11 @@ public class Node {
 			for(Integer i: copy){
 				List<Integer> tuple = new ArrayList<Integer>();
 				tuple.add(i);
-				Node child = new Node(i.intValue(), this, state, tuple);
+				Boolean t = state.getAtStart();
+				State copyState = new State(new ArrayList<Integer>(state.getSouthBank()),
+						new ArrayList<Integer>(state.getNorthBank()),
+						t);
+				Node child = new Node(i.intValue(), this, copyState, tuple);
 				children.add(child);
 			}
 		}
@@ -94,5 +108,8 @@ public class Node {
 	}
 	public List<Integer> getMoved(){
 		return this.moved;
+	}
+	public String toString(){
+		return this.state.toString();
 	}
 }

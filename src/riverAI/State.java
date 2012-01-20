@@ -81,12 +81,11 @@ public class State {
 	 */
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(goal.toString()+"\n");
-		
-		sb.append(start.toString());
-		sb.append("\n");
-		sb.append(atStart + "\n");
-		sb.append("------------------");
+//		sb.append(goal.toString()+"\n");
+//		sb.append(start.toString());
+//		sb.append("\n");
+//		sb.append(atStart + "\n");
+//		sb.append("------------------");
 		return sb.toString();
 	}
 	/**
@@ -95,7 +94,9 @@ public class State {
 	 * @return the update state with the meat bags and boat moved.
 	 */
 	public State update(List<Integer> moved){
+		//System.out.println(moved);
 		for(Integer i: moved){
+			//System.out.println("I is : "+i);
 			if(atStart){
 				this.start.remove(i);
 				this.goal.add(i);
