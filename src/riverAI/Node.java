@@ -7,7 +7,7 @@ import java.util.*;
  * @author harry moreno
  * @author ben leone
  */
-public class Node {
+public class Node implements Comparator{
 	private int cost;					//the heaviest person that is in the boat
 	private int time;
 	private State state;
@@ -38,13 +38,8 @@ public class Node {
 				max=i;
 			}
 		}
-		
-//******************************************************************************************************************************//
 		//A* notes
 		estimate = max + cost; //max is our h(n) cost is the g(n) and estimate is our f(n)
-		
-//******************************************************************************************************************************//
-		
 	}
 	public int getCost(){
 		return cost;
@@ -136,5 +131,16 @@ public class Node {
 	}
 	public String toString(){
 		return this.state.toString();
+	}
+	@Override
+	public int compare(Node n1, Node n2) {
+		int result = 0;
+		if(n1.getEstimate() <= n2.getEstimate()){
+			result = -1;
+		}
+		else{
+			result = 1;
+		}
+		return result;
 	}
 }
