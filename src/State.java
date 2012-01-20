@@ -73,7 +73,17 @@ public class State {
 		}
 		return false;	
 	}
-	
+	/**
+	 * toString
+	 */
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(start.toString());
+		sb.append("\n");
+		sb.append(goal.toString());
+		sb.append("------------------");
+		return sb.toString();
+	}
 	/**
 	 * Updates the state by moving the indicated meatbags identified by weight
 	 * @param moved an array list of the meatbag wieghts to be moved
