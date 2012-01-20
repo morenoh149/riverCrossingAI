@@ -44,10 +44,10 @@ public class BFS {
 				frontier.addAll(currentNode.expand());
 			}
 		}
+		totalCost = currentNode.getCost();
 		while(solutionCTL){
 			sb.append(currentNode.toString()+"\n");
 //			System.out.println("instance cost:"+currentNode.getCost());
-			totalCost += currentNode.getCost();
 			if(currentNode.getParent()==null){
 				solutionCTL=false;
 				break;

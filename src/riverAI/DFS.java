@@ -49,10 +49,10 @@ public class DFS {
 			}
 		}
 		solution = new ArrayList<State>();
+		totalCost = Active.getCost();
 		while(solutionCTL){
 //			System.out.println(Active.getState().toString());
 			solution.add(Active.getState());
-			totalCost += Active.getCost();
 			if(Active.getParent()==null){
 				solutionCTL=false;
 				break;
