@@ -7,7 +7,7 @@ public class Solution {
 		int numOfPpl=0;
 		List<Integer> weights = new ArrayList<Integer>();
 		try{
-			FileInputStream fstream = new FileInputStream("input2.txt");
+			FileInputStream fstream = new FileInputStream("input3.txt");
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			Scanner s = new Scanner(br);
@@ -27,7 +27,7 @@ public class Solution {
 			ArrayList<Integer> dummy = new ArrayList<Integer>();
 			State init = new State(weights, dummy, true);
 			State goal = new State(dummy, weights, false);
-//			BFS bfs = new BFS(init, goal);
+			BFS bfs = new BFS(init, goal);
 			System.out.println(DFS.search(init, goal));
 		}
 	}

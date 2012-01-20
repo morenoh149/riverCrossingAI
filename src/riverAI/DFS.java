@@ -50,7 +50,7 @@ public class DFS {
 		}
 		solution = new ArrayList<State>();
 		while(solutionCTL){
-			System.out.println(Active.getState().toString());
+//			System.out.println(Active.getState().toString());
 			solution.add(Active.getState());
 			totalCost += Active.getCost();
 			if(Active.getParent()==null){
@@ -61,6 +61,10 @@ public class DFS {
 			}
 		}
 		StringBuilder sb = new StringBuilder();
-		sb.append(b)
+		sb.append("DFS "+totalCost+" "+numOfNodesExpanded+"\n");
+		for(State s : solution){
+			sb.append(s.toString()+"\n");
+		}
+		return sb.toString();
 	} 
 }
