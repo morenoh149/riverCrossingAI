@@ -58,7 +58,8 @@ public class Node {
 			}
 		}
 		else{																	//if on north side
-			for(Integer i: state.getNorthBank()){
+			ArrayList<Integer> copy = new ArrayList<Integer>(state.getNorthBank());
+			for(Integer i: copy){
 				List<Integer> tuple = new ArrayList<Integer>();
 				tuple.add(i);
 				Node child = new Node(i.intValue(), this, state, tuple);

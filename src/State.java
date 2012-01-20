@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Collection;
 import java.util.List;
@@ -51,18 +52,19 @@ public class State {
 	 * @return boolean of equality, Liberte, et Fraternity
 	 */
 	public boolean equals(State state){
-		List<Integer> goal1, goal2, start1, start2;
-		goal1=this.goal;
-		goal2=state.goal;
-		start1=this.start;
-		start2=state.start;
+		List<Integer> goal1 =  new ArrayList<Integer>(this.goal);
+		List<Integer> goal2 =  new ArrayList<Integer>(state.goal);
+		List<Integer> start1 = new ArrayList<Integer>(this.start);
+		List<Integer> start2 = new ArrayList<Integer>(state.start);
+		List<Integer> goalItr = new ArrayList<Integer>(this.goal);
+		List<Integer> startItr= new ArrayList<Integer>(this.start);
 		if(this.atStart==state.atStart){
-			for(Integer i: goal1){
-				goal2.remove(1);
+			for(Integer i: goalItr){
+				goal2.remove(i);
 				goal1.remove(i);
 			}
 			if(goal1.isEmpty()&&goal2.isEmpty()){
-				for(Integer k: start1){
+				for(Integer k: startItr){
 					start2.remove(k);
 					start1.remove(k);
 				}
@@ -80,7 +82,7 @@ public class State {
 		StringBuilder sb = new StringBuilder();
 		sb.append(start.toString());
 		sb.append("\n");
-		sb.append(goal.toString());
+		sb.append(goal.toString()+"\n");
 		sb.append("------------------");
 		return sb.toString();
 	}

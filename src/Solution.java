@@ -23,8 +23,11 @@ public class Solution {
 			System.out.println("A*  "+weights.get(0)+" 0");
 		}
 		else{
-			//Node root = new Node(0, null);
-			//BFS bfs = new BFS(root, weights);
+			ArrayList<Integer> dummy = new ArrayList<Integer>();
+			State init = new State(weights, dummy, true);
+			State goal = new State(dummy, weights, false);
+			BFS bfs = new BFS(init, goal);
+			//DFS.search(init, goal).toString();
 		}
 	}
 }

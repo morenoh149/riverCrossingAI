@@ -10,7 +10,7 @@ public class BFS {
 	private Queue<Node> frontier;
 	private State goalState;
 	private String result;
-	
+
 	/**
 	 * initializes the BFS algorithm
 	 * @param initialState
@@ -21,22 +21,24 @@ public class BFS {
 		currentNode = new Node(0, null, initialState, null);
 		frontier = new LinkedList<Node>();
 		frontier.add(currentNode);
-		search(frontier);
-	}
-	
-	/**
-	 * searches the frontier in FIFO order
-	 * @param frontier
-	 */
-	public void search(Queue<Node> frontier){
-		this.currentNode = frontier.poll();
-		if(currentNode.getState().equals(goalState)){
-			getAncestry(currentNode);
+		boolean notSolved=true;
+		while(notSolved){
+			if(frontier.isEmpty()){
+				notSolved=false;
+			}
+			else{
+				this.currentNode = frontier.poll();
+				System.out.println(currentNode.getState().toString());
+			}
+			if(currentNode.getState().equals(goalState)){
+				notSolved=true;
+				getAncestry(currentNode);
+			}
+			else{
+				frontier.addAll(currentNode.expand());
+			}
 		}
-		else{
-			frontier.addAll(currentNode.expand());
-			search(frontier);
-		}
+		System.out.println(result);
 	}
 	/**
 	 * saves ancestry of the given node to result string
