@@ -46,4 +46,10 @@ public class Node {
 	public int hashCode(Node node){
 		return node.state.hashCode();
 	}
+	public State getState(){
+		return this.state;
+	}
+	public List<Integer> getMoved(){
+		return this.moved;
+	}
 }
