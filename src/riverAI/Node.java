@@ -7,7 +7,7 @@ import java.util.*;
  * @author harry moreno
  * @author ben leone
  */
-public class Node implements Comparator{
+public class Node implements Comparator<Node>{
 	private int cost;					//the heaviest person that is in the boat
 	private int time;
 	private State state;
@@ -16,6 +16,9 @@ public class Node implements Comparator{
 	private List<Node> children;
 	private List<Integer> moved;
 
+	Node(){
+		this.state = null;
+	}
 	Node(int cost, Node parent, State state, List<Integer> moved){
 		this.parent = parent;
 		this.cost = cost;
@@ -131,6 +134,9 @@ public class Node implements Comparator{
 	}
 	public String toString(){
 		return this.state.toString();
+	}
+	public int getEstimate(){
+		return this.estimate;
 	}
 	@Override
 	public int compare(Node n1, Node n2) {

@@ -59,6 +59,9 @@ public class BFS {
 		sb.insert(0, numOfNodesExpanded+" \n");
 		sb.insert(0, "BFS "+totalCost+" ");
 		result = sb.toString();
-		System.out.println(result);
+//		System.out.println(result);
+	}
+	public String toString(){
+		return result;
 	}
 }
